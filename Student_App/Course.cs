@@ -19,8 +19,8 @@ namespace Student_App
          * string room
          *              */
         Teacher _teacher;
-        List<string> _students;
-        public List<int> _grades;
+        List<Student> _students;
+        List<int> _grades;
         string _name;
          string _room;
 
@@ -30,7 +30,7 @@ namespace Student_App
         {
             _name = name;
             _room = room;
-            _students = new List<string>();
+            _students = new List<Student>();
             _grades = new List<int>();
 
         } // constructor
@@ -39,7 +39,7 @@ namespace Student_App
         public Course(string name)
         {
             _name = name;
-            _students = new List<string>();
+            _students = new List<Student>();
             _grades = new List<int>();
         } 
 
@@ -48,7 +48,7 @@ namespace Student_App
             _name = name;
             _room = room;
             _teacher = teacher;
-            _students = new List<string>();
+            _students = new List<Student>();
             _grades = new List<int>();
         }
 
@@ -87,7 +87,7 @@ namespace Student_App
             set => _room = value;
         }
 
-        public List<string> Students
+        public List<Student> Students
         {
             get
             {
@@ -102,6 +102,31 @@ namespace Student_App
         {
             get => _grades;
         } // Grades
+
+        // Method
+        public void AddStudent(Student student)
+        {
+            _students.Add(student);
+        }
+
+        public void AddStudent(string firstName, string lastName)
+        {
+            Student s = new Student(firstName, lastName);
+            _students.Add(s);
+        }
+
+        public double CourseAverage()
+        {
+            int sum = 0;
+
+            foreach (int grade in _grades)
+            {
+                sum += grade;
+            }
+
+            double average = (double)sum / (double)_grades.Count;
+            return average;
+        }
 
 
     } // class
